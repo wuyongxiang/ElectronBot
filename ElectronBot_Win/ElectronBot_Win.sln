@@ -5,8 +5,6 @@ VisualStudioVersion = 17.2.32616.157
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ElectronBot_Win", "ElectronBot_Win.vcxproj", "{4000C5BC-BF46-43B1-8D34-84DE49E63673}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup", "..\Setup\Setup.vdproj", "{86134095-D311-4941-A9C0-26C6CD8D0F64}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -23,10 +21,6 @@ Global
 		{4000C5BC-BF46-43B1-8D34-84DE49E63673}.Release|x64.Build.0 = Release|x64
 		{4000C5BC-BF46-43B1-8D34-84DE49E63673}.Release|x86.ActiveCfg = Release|Win32
 		{4000C5BC-BF46-43B1-8D34-84DE49E63673}.Release|x86.Build.0 = Release|Win32
-		{86134095-D311-4941-A9C0-26C6CD8D0F64}.Debug|x64.ActiveCfg = Debug
-		{86134095-D311-4941-A9C0-26C6CD8D0F64}.Debug|x86.ActiveCfg = Debug
-		{86134095-D311-4941-A9C0-26C6CD8D0F64}.Release|x64.ActiveCfg = Release
-		{86134095-D311-4941-A9C0-26C6CD8D0F64}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

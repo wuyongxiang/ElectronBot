@@ -6,34 +6,120 @@ bool ElectronController::Connect()
     return player->Connect();
 }
 
-void ElectronController::Init()
+void ElectronController::Init(int cx, int cy)
 {
+    screenCx = cx;
+    screenCy = cy;
+    lastP.x = 0;
+    lastP.y = 0;
+    std::cout << "screenCx: " << screenCx << "screenCy: " << screenCy << std::endl;
+    /*
+    
+    */
     AddTask(Happy_start(true));
     AddTask(Happy_cycle());
     AddTask(Happy_end());
+    isInit = true;
     RunTask();
+    
+    
 }
 void ElectronController::RunTask()
 {
+
     if (!robotTasks.empty()) {
         player->Play(robotTasks.front());
         robotTasks.pop();
     }
     if (!robotTasks.empty()) {      
-            RunTask();      
+        RunTask();      
     }
     else {
         if (isCalling) {
             CallingTask();
+            RunTask();
         }
         else {
-            AssignTasks(-1);
+            if (isMouseActivity) {
+                //std::cout << "Mouse is Active" << std::endl;
+                Sleep(50);
+                RunTask();
+            }
+            else {
+                if (lastLeftRight == -1) {
+                    AddTask(Lookleft_end());
+                    lastLeftRight = 0;
+                }
+                else if(lastLeftRight == 1) {
+                    AddTask(LookRight_end());
+                    lastLeftRight = 0;
+
+                }
+                else {
+                    AssignTasks(-1);
+
+                }
+                RunTask();
+            }
+            
         }
         
-        RunTask();
+    }
+
+    
+    
+}
+
+void ElectronController::RunMouseTask(POINT p, bool LDOWN, bool RDOWN)
+{
+    if (isInit) {
+        long dx = p.x - lastP.x;
+        long dy = p.y - lastP.y;
+        if (sqrt(dx * dx + dy * dy) < 10 && !LDOWN && !RDOWN) {
+            mouseStopNum++;
+        }
+        else {
+            isMouseActivity = true;
+            mouseStopNum = 0;
+        }
+        if (mouseStopNum > 50) {
+            if (isMouseActivity) {
+                std::cout << "Mouse not Active" << std::endl;
+            }
+            isMouseActivity = false;
+        }
+        if (robotTasks.size() > 0) {
+
+        }
+        else {
+            if (isMouseActivity) {
+                AddTask(Get_MouseCtrlTask(p, LDOWN, RDOWN));
+
+                
+            }
+        }
+       // std::cout << "POINT: x" << p.x << ",y: " << p.y << ",LDOWN: " << LDOWN << ",RDOWN: " << RDOWN << std::endl;
+        lastP.x = p.x;
+        lastP.y = p.y;
     }
     
 }
+
+void ElectronController::RunCaptureTask(bool isBlink, int xJoint, int yJoint)
+{
+    if (robotTasks.size() > 0) {
+
+    }
+    else {
+        AddTask(Get_CaptureTask(isBlink, xJoint, yJoint));
+        player->Play(robotTasks.front());
+        robotTasks.pop();
+    }
+}
+
+
+
+
 void ElectronController::CallingTask()
 {
     if (callNum == 0) {
@@ -112,6 +198,7 @@ void ElectronController::AssignTasks(int num)
     else if (randNum >= 30 && randNum < 50) {
         AddTask(Stay_ss2());
     }
+    /*
     else if (randNum >= 55 && randNum < 60) {
         AddTask(LookLeft_start());
         int randNum1 = rand() % 2 + 1;
@@ -128,6 +215,8 @@ void ElectronController::AssignTasks(int num)
         }
         AddTask(LookRight_end());
     }
+    */
+    
     else
     {
         AddTask(Stay_ss());
@@ -225,6 +314,8 @@ void ElectronController::Disconnect()
     player->Relax();
     player->Disconnect();
 }
+
+
 
 ElectronPlayer::RobotTask ElectronController::Stay_ss()
 {
@@ -350,6 +441,27 @@ ElectronPlayer::RobotTask ElectronController::LookRight_end()
     tasks.push_back(ElectronPlayer::RobotPose_t{ 0, 5, 5, 3, 15, 0 });
     
     return ElectronPlayer::RobotTask{ "media/Emoji/stay/look_right/look_right_3.mp4", "" ,tasks, 2.0, false };
+}
+
+ElectronPlayer::RobotTask ElectronController::Diyiminger()
+{
+    vector<ElectronPlayer::RobotPose_t> tasks;
+    tasks.push_back(ElectronPlayer::RobotPose_t{ 0, 5, 160, 5, 160, 0 });
+    tasks.push_back(ElectronPlayer::RobotPose_t{ 0, 5, 160, 5, 160, 0 });
+    tasks.push_back(ElectronPlayer::RobotPose_t{ 0, 5, 160, 5, 160, 0 });
+    tasks.push_back(ElectronPlayer::RobotPose_t{ 0, 5, 160, 5, 160, 0 });
+    tasks.push_back(ElectronPlayer::RobotPose_t{ 0, 5, 160, 5, 160, 0 });
+    tasks.push_back(ElectronPlayer::RobotPose_t{ 0, 5, 160, 5, 160, 0 });
+    tasks.push_back(ElectronPlayer::RobotPose_t{ 0, 5, 160, 5, 160, 0 });
+    tasks.push_back(ElectronPlayer::RobotPose_t{ 0, 20, 160, 20, 160, 0 });
+    tasks.push_back(ElectronPlayer::RobotPose_t{ 0, 20, 160, 20, 160, 0 });
+    tasks.push_back(ElectronPlayer::RobotPose_t{ 0, 20, 160, 20, 160, 0 });
+    tasks.push_back(ElectronPlayer::RobotPose_t{ 0, 20, 160, 20, 160, 0 });
+    tasks.push_back(ElectronPlayer::RobotPose_t{ 0, 20, 160, 20, 160, 0 });
+    tasks.push_back(ElectronPlayer::RobotPose_t{ 0, 20, 160, 20, 160, 0 });
+    tasks.push_back(ElectronPlayer::RobotPose_t{ 0, 20, 160, 20, 160, 0 });
+
+    return ElectronPlayer::RobotTask{ "media/diyiminger.mp4", "media/diyiminger2.mp3" ,tasks, 1.0, true };
 }
 
 ElectronPlayer::RobotTask ElectronController::Happy_start(bool isOpen)
@@ -522,6 +634,261 @@ ElectronPlayer::RobotTask ElectronController::Alarmed_end()
     tasks.push_back(ElectronPlayer::RobotPose_t{ 0, 6, 90, 7, 90, 0 });
     tasks.push_back(ElectronPlayer::RobotPose_t{ 0, 5, 5, 3, 15, 0 });
     return ElectronPlayer::RobotTask{ "media/Emoji/alarmed/alarmed_3.mp4", "" ,tasks, 2.0, false };
+}
+
+ElectronPlayer::RobotTask ElectronController::Get_MouseCtrlTask(POINT p, bool LDOWN, bool RDOWN)
+{
+    vector<ElectronPlayer::RobotPose_t> tasks;
+    float headJ = ((p.y * 1.0f ) / screenCy - 0.5f) * 30;
+    float bodyJ = ((p.x * 1.0f) / screenCx - 0.5f) * 80;
+    cout <<"headJ: " << headJ<< ",bodyJ: " << bodyJ <<endl;
+    
+
+    std::string videoPath = "";
+    if ((p.x * 1.0f) / screenCx > 0.33f) {
+        if ((p.x * 1.0f) / screenCx > 0.67f) {
+            if (RDOWN) {
+                videoPath = "media/Emoji/stay/look_right/lookright_2.mp4";
+                tasks.push_back(ElectronPlayer::RobotPose_t{ headJ, 5, 5, 3, 15, -bodyJ });
+                tasks.push_back(ElectronPlayer::RobotPose_t{ headJ, 5, 5, 3, 15, -bodyJ });
+
+                tasks.push_back(ElectronPlayer::RobotPose_t{ headJ, 10, 5, 9, 15, -bodyJ });
+                tasks.push_back(ElectronPlayer::RobotPose_t{ headJ, 10, 5, 9, 15, -bodyJ });
+
+                tasks.push_back(ElectronPlayer::RobotPose_t{ headJ, 5, 5, 3, 15, -bodyJ });
+                tasks.push_back(ElectronPlayer::RobotPose_t{ headJ, 5, 5, 3, 15, -bodyJ });
+
+                tasks.push_back(ElectronPlayer::RobotPose_t{ headJ, 10, 5, 9, 15, -bodyJ });
+                tasks.push_back(ElectronPlayer::RobotPose_t{ headJ, 10, 5, 9, 15, -bodyJ });
+
+                tasks.push_back(ElectronPlayer::RobotPose_t{ headJ, 5, 5, 3, 15, -bodyJ });
+                tasks.push_back(ElectronPlayer::RobotPose_t{ headJ, 5, 5, 3, 15, -bodyJ });
+
+            }
+            else {
+                if (LDOWN) {
+                    videoPath = "media/Emoji/stay/look_right/lookright_1.mp4";
+                    tasks.push_back(ElectronPlayer::RobotPose_t{ headJ, 5, 5, 3, 15, -bodyJ });
+                    tasks.push_back(ElectronPlayer::RobotPose_t{ headJ, 5, 5, 3, 15, -bodyJ });
+                    tasks.push_back(ElectronPlayer::RobotPose_t{ headJ, 5, 5, 3, 15, -bodyJ });
+                    tasks.push_back(ElectronPlayer::RobotPose_t{ headJ, 12, 5, 11, 15, -bodyJ });
+                    tasks.push_back(ElectronPlayer::RobotPose_t{ headJ, 12, 5, 11, 15, -bodyJ });
+                    tasks.push_back(ElectronPlayer::RobotPose_t{ headJ, 12, 5, 11, 15, -bodyJ });
+                    tasks.push_back(ElectronPlayer::RobotPose_t{ headJ, 5, 5, 3, 15, -bodyJ });
+                    tasks.push_back(ElectronPlayer::RobotPose_t{ headJ, 5, 5, 3, 15, -bodyJ });
+                    tasks.push_back(ElectronPlayer::RobotPose_t{ headJ, 5, 5, 3, 15, -bodyJ });
+                }
+                else {
+                    if (lastLeftRight != 1) {
+                        videoPath = "media/Emoji/stay/look_right/look_right_1.mp4";
+                        tasks.push_back(ElectronPlayer::RobotPose_t{ headJ, 5, 5, 3, 15, -bodyJ });
+                    }
+                    else {
+                        videoPath = "media/Emoji/stay/look_right/lookright.png";
+                        tasks.push_back(ElectronPlayer::RobotPose_t{ headJ, 5, 5, 3, 15, -bodyJ });
+                    }
+                    lastLeftRight = 1;
+                }
+            }
+            
+
+        }
+        else {
+            if (RDOWN) {
+                videoPath = "media/Emoji/stay/stay_2.mp4";
+                tasks.push_back(ElectronPlayer::RobotPose_t{ headJ, 5, 5, 3, 15, -bodyJ });
+                tasks.push_back(ElectronPlayer::RobotPose_t{ headJ, 5, 5, 3, 15, -bodyJ });
+
+                tasks.push_back(ElectronPlayer::RobotPose_t{ headJ, 10, 5, 9, 15, -bodyJ });
+                tasks.push_back(ElectronPlayer::RobotPose_t{ headJ, 10, 5, 9, 15, -bodyJ });
+
+                tasks.push_back(ElectronPlayer::RobotPose_t{ headJ, 5, 5, 3, 15, -bodyJ });
+                tasks.push_back(ElectronPlayer::RobotPose_t{ headJ, 5, 5, 3, 15, -bodyJ });
+
+                tasks.push_back(ElectronPlayer::RobotPose_t{ headJ, 10, 5, 9, 15, -bodyJ });
+                tasks.push_back(ElectronPlayer::RobotPose_t{ headJ, 10, 5, 9, 15, -bodyJ });
+
+                tasks.push_back(ElectronPlayer::RobotPose_t{ headJ, 5, 5, 3, 15, -bodyJ });
+                tasks.push_back(ElectronPlayer::RobotPose_t{ headJ, 5, 5, 3, 15, -bodyJ });
+            }
+            else {
+                if (LDOWN) {
+                    videoPath = "media/Emoji/stay/stay_1.mp4";
+                    tasks.push_back(ElectronPlayer::RobotPose_t{ headJ, 5, 5, 3, 15, -bodyJ });
+                    tasks.push_back(ElectronPlayer::RobotPose_t{ headJ, 5, 5, 3, 15, -bodyJ });
+                    tasks.push_back(ElectronPlayer::RobotPose_t{ headJ, 5, 5, 3, 15, -bodyJ });
+                    tasks.push_back(ElectronPlayer::RobotPose_t{ headJ, 12, 5, 11, 15, -bodyJ });
+                    tasks.push_back(ElectronPlayer::RobotPose_t{ headJ, 12, 5, 11, 15, -bodyJ });
+                    tasks.push_back(ElectronPlayer::RobotPose_t{ headJ, 12, 5, 11, 15, -bodyJ });
+                    tasks.push_back(ElectronPlayer::RobotPose_t{ headJ, 5, 5, 3, 15, -bodyJ });
+                    tasks.push_back(ElectronPlayer::RobotPose_t{ headJ, 5, 5, 3, 15, -bodyJ });
+                    tasks.push_back(ElectronPlayer::RobotPose_t{ headJ, 5, 5, 3, 15, -bodyJ });
+                }
+                else {
+                    if (lastLeftRight == -1) {
+                        videoPath = "media/Emoji/stay/look_left/look_left3.mp4";
+                        tasks.push_back(ElectronPlayer::RobotPose_t{ headJ, 5, 5, 3, 15, -bodyJ });
+                    }
+                    else if (lastLeftRight == 1) {
+                        videoPath = "media/Emoji/stay/look_right/look_right_3.mp4";
+                        tasks.push_back(ElectronPlayer::RobotPose_t{ headJ, 5, 5, 3, 15, -bodyJ });
+                    }
+                    else {
+                        videoPath = "media/Emoji/stay/stay.png";
+                        tasks.push_back(ElectronPlayer::RobotPose_t{ headJ, 5, 5, 3, 15, -bodyJ });
+                    }
+                    lastLeftRight = 0;
+                }
+            }
+           
+
+        }
+    }
+    else
+    {
+        if (RDOWN) {
+            videoPath = "media/Emoji/stay/look_left/lookleft_2.mp4";
+            tasks.push_back(ElectronPlayer::RobotPose_t{ headJ, 5, 5, 3, 15, -bodyJ });
+            tasks.push_back(ElectronPlayer::RobotPose_t{ headJ, 5, 5, 3, 15, -bodyJ });
+
+            tasks.push_back(ElectronPlayer::RobotPose_t{ headJ, 10, 5, 9, 15, -bodyJ });
+            tasks.push_back(ElectronPlayer::RobotPose_t{ headJ, 10, 5, 9, 15, -bodyJ });
+
+            tasks.push_back(ElectronPlayer::RobotPose_t{ headJ, 5, 5, 3, 15, -bodyJ });
+            tasks.push_back(ElectronPlayer::RobotPose_t{ headJ, 5, 5, 3, 15, -bodyJ });
+
+            tasks.push_back(ElectronPlayer::RobotPose_t{ headJ, 10, 5, 9, 15, -bodyJ });
+            tasks.push_back(ElectronPlayer::RobotPose_t{ headJ, 10, 5, 9, 15, -bodyJ });
+
+            tasks.push_back(ElectronPlayer::RobotPose_t{ headJ, 5, 5, 3, 15, -bodyJ });
+            tasks.push_back(ElectronPlayer::RobotPose_t{ headJ, 5, 5, 3, 15, -bodyJ });
+        }
+        else {
+            if (LDOWN) {
+                videoPath = "media/Emoji/stay/look_left/lookleft_1.mp4";
+                tasks.push_back(ElectronPlayer::RobotPose_t{ headJ, 5, 5, 3, 15, -bodyJ });
+                tasks.push_back(ElectronPlayer::RobotPose_t{ headJ, 5, 5, 3, 15, -bodyJ });
+                tasks.push_back(ElectronPlayer::RobotPose_t{ headJ, 5, 5, 3, 15, -bodyJ });
+                tasks.push_back(ElectronPlayer::RobotPose_t{ headJ, 12, 5, 11, 15, -bodyJ });
+                tasks.push_back(ElectronPlayer::RobotPose_t{ headJ, 12, 5, 11, 15, -bodyJ });
+                tasks.push_back(ElectronPlayer::RobotPose_t{ headJ, 12, 5, 11, 15, -bodyJ });
+                tasks.push_back(ElectronPlayer::RobotPose_t{ headJ, 5, 5, 3, 15, -bodyJ });
+                tasks.push_back(ElectronPlayer::RobotPose_t{ headJ, 5, 5, 3, 15, -bodyJ });
+                tasks.push_back(ElectronPlayer::RobotPose_t{ headJ, 5, 5, 3, 15, -bodyJ });
+            }
+            else {
+                if (lastLeftRight != -1) {
+                    videoPath = "media/Emoji/stay/look_left/look_left1.mp4";
+                    tasks.push_back(ElectronPlayer::RobotPose_t{ headJ, 5, 5, 3, 15, -bodyJ });
+                }
+                else {
+                    videoPath = "media/Emoji/stay/look_left/lookleft.png";
+                    tasks.push_back(ElectronPlayer::RobotPose_t{ headJ, 5, 5, 3, 15, -bodyJ });
+
+                }
+                lastLeftRight = -1;
+            }
+        }
+        
+
+    }
+
+    return ElectronPlayer::RobotTask{ videoPath, "" ,tasks, 2.0, false };
+}
+
+ElectronPlayer::RobotTask ElectronController::Get_CaptureTask(bool isBlink, int xJoint, int yJoint)
+{
+    vector<ElectronPlayer::RobotPose_t> tasks;
+    float headJ = yJoint;
+    float bodyJ = xJoint;
+    cout << "headJ: " << headJ << ",bodyJ: " << bodyJ << endl;
+
+
+    std::string videoPath = "";
+    if ( xJoint < 25) {
+        if (xJoint < -25) {
+           
+            if (isBlink) {
+                videoPath = "media/Emoji/stay/look_left/lookleft_1.mp4";
+                tasks.push_back(ElectronPlayer::RobotPose_t{ headJ, 5, 5, 3, 15, -bodyJ });
+                tasks.push_back(ElectronPlayer::RobotPose_t{ headJ, 5, 5, 3, 15, -bodyJ });
+                tasks.push_back(ElectronPlayer::RobotPose_t{ headJ, 12, 5, 11, 15, -bodyJ });
+                tasks.push_back(ElectronPlayer::RobotPose_t{ headJ, 12, 5, 11, 15, -bodyJ });
+                tasks.push_back(ElectronPlayer::RobotPose_t{ headJ, 5, 5, 3, 15, -bodyJ });
+                tasks.push_back(ElectronPlayer::RobotPose_t{ headJ, 5, 5, 3, 15, -bodyJ });
+            }
+            else {
+                if (lastLeftRight != -1) {
+                    videoPath = "media/Emoji/stay/look_left/look_left1.mp4";
+                    tasks.push_back(ElectronPlayer::RobotPose_t{ headJ, 5, 5, 3, 15, -bodyJ });
+                }
+                else {
+                    videoPath = "media/Emoji/stay/look_left/lookleft.png";
+                    tasks.push_back(ElectronPlayer::RobotPose_t{ headJ, 5, 5, 3, 15, -bodyJ });
+
+                }
+                lastLeftRight = -1;
+            }
+            
+
+
+        }
+        else {            
+            if (isBlink) {
+                videoPath = "media/Emoji/stay/stay_1.mp4";
+                tasks.push_back(ElectronPlayer::RobotPose_t{ headJ, 5, 5, 3, 15, -bodyJ });
+                tasks.push_back(ElectronPlayer::RobotPose_t{ headJ, 5, 5, 3, 15, -bodyJ });
+                tasks.push_back(ElectronPlayer::RobotPose_t{ headJ, 12, 5, 11, 15, -bodyJ });
+                tasks.push_back(ElectronPlayer::RobotPose_t{ headJ, 12, 5, 11, 15, -bodyJ });
+                tasks.push_back(ElectronPlayer::RobotPose_t{ headJ, 5, 5, 3, 15, -bodyJ });
+                tasks.push_back(ElectronPlayer::RobotPose_t{ headJ, 5, 5, 3, 15, -bodyJ });
+            }
+            else {
+                if (lastLeftRight == -1) {
+                    videoPath = "media/Emoji/stay/look_left/look_left3.mp4";
+                    tasks.push_back(ElectronPlayer::RobotPose_t{ headJ, 5, 5, 3, 15, -bodyJ });
+                }
+                else if (lastLeftRight == 1) {
+                    videoPath = "media/Emoji/stay/look_right/look_right_3.mp4";
+                    tasks.push_back(ElectronPlayer::RobotPose_t{ headJ, 5, 5, 3, 15, -bodyJ });
+                }
+                else {
+                    videoPath = "media/Emoji/stay/stay.png";
+                    tasks.push_back(ElectronPlayer::RobotPose_t{ headJ, 5, 5, 3, 15, -bodyJ });
+                }
+                lastLeftRight = 0;
+            }
+        }
+    }
+    else
+    {
+        if (isBlink) {
+            videoPath = "media/Emoji/stay/look_right/lookright_1.mp4";
+            tasks.push_back(ElectronPlayer::RobotPose_t{ headJ, 5, 5, 3, 15, -bodyJ });
+            tasks.push_back(ElectronPlayer::RobotPose_t{ headJ, 5, 5, 3, 15, -bodyJ });
+            tasks.push_back(ElectronPlayer::RobotPose_t{ headJ, 12, 5, 11, 15, -bodyJ });
+            tasks.push_back(ElectronPlayer::RobotPose_t{ headJ, 12, 5, 11, 15, -bodyJ });
+            tasks.push_back(ElectronPlayer::RobotPose_t{ headJ, 5, 5, 3, 15, -bodyJ });
+            tasks.push_back(ElectronPlayer::RobotPose_t{ headJ, 5, 5, 3, 15, -bodyJ });
+        }
+        else {
+            if (lastLeftRight != 1) {
+                videoPath = "media/Emoji/stay/look_right/look_right_1.mp4";
+                tasks.push_back(ElectronPlayer::RobotPose_t{ headJ, 5, 5, 3, 15, -bodyJ });
+            }
+            else {
+                videoPath = "media/Emoji/stay/look_right/lookright.png";
+                tasks.push_back(ElectronPlayer::RobotPose_t{ headJ, 5, 5, 3, 15, -bodyJ });
+            }
+            lastLeftRight = 1;
+        }
+        
+        
+
+
+    }
+
+    return ElectronPlayer::RobotTask{ videoPath, "" ,tasks, 2.0, false };
 }
 
 

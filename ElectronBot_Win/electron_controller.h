@@ -22,17 +22,24 @@ public:
     {
 
     }
-    
+    bool isInit = false;
     bool isCalling = false;
+    bool isMouseActivity = false;
+    POINT lastP;
+    int lastLeftRight = 0;//-1 0 1 ×óÖÐÓÒ
     int callNum = 0;
-
+    int mouseStopNum = 0;
+    int screenCx = 0;
+    int screenCy = 0;
     ElectronPlayer* player;
     queue<ElectronPlayer::RobotTask> robotTasks;
 
     bool Connect();
-    void Init();
+    void Init(int screenCx, int screenCy);
     void MsgFromTCP(const char* msg,SOCKET s);
     void Disconnect();
+    
+
     //void Play_Follow();
     ElectronPlayer::RobotTask Stay_ss();
     ElectronPlayer::RobotTask Stay_ss1();
@@ -45,6 +52,8 @@ public:
     ElectronPlayer::RobotTask LookRight_start();
     ElectronPlayer::RobotTask LookRight_cycle();
     ElectronPlayer::RobotTask LookRight_end();
+
+    ElectronPlayer::RobotTask Diyiminger();
 
     ElectronPlayer::RobotTask Happy_start(bool isOpen);
     ElectronPlayer::RobotTask Happy_cycle();
@@ -68,7 +77,12 @@ public:
     ElectronPlayer::RobotTask Alarmed_cycle_calling();
     ElectronPlayer::RobotTask Alarmed_end();
 
+    ElectronPlayer::RobotTask Get_MouseCtrlTask(POINT p , bool LDOWN, bool RDOWN);
+    ElectronPlayer::RobotTask Get_CaptureTask(bool isBlink, int xJoint, int yJoint);
+
     void RunTask();
+    void RunMouseTask(POINT p, bool LDOWN, bool RDOWN);
+    void RunCaptureTask(bool isBlink, int xJoint, int yJoint );
     void CallingTask();
     void AssignTasks(int num);
     void AddTask(ElectronPlayer::RobotTask task);

@@ -70,6 +70,16 @@ void ElectronPlayer::VideoTask(ElectronPlayer* _obj,
         _filePath.find(".bmp") != std::string::npos)
     {
         _obj->lowLevelHandle->SetImageSrc(cv::imread(_filePath));
+        for (int poseIndex = 0; poseIndex < tasks.size(); poseIndex++) {
+            _obj->lowLevelHandle->SetJointAngles(
+                tasks[poseIndex].j1,
+                tasks[poseIndex].j2,
+                tasks[poseIndex].j3,
+                tasks[poseIndex].j4,
+                tasks[poseIndex].j5,
+                tasks[poseIndex].j6,
+                true);
+        }
         _obj->lowLevelHandle->Sync();
     }
     // Video type

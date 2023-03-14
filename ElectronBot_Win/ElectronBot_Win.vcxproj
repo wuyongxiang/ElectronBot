@@ -75,8 +75,8 @@
     <LibraryPath>C:\Users\Lenovo\Desktop\ElectronBot_Win\lib;C:\Users\Lenovo\Desktop\ElectronBot_Win\src\lib;E:\Program Files\OpenCV3.4.8\opencv\build\x64\vc15\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>C:\Users\Lenovo\Desktop\ElectronBot_Win\lib;C:\Users\Lenovo\Desktop\ElectronBot_Win\src;E:\Program Files\OpenCV3.4.8\opencv\build\include;E:\Program Files\OpenCV3.4.8\opencv\build\include\opencv;E:\Program Files\OpenCV3.4.8\opencv\build\include\opencv2;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\Lenovo\Desktop\ElectronBot_Win\lib;C:\Users\Lenovo\Desktop\ElectronBot_Win\src\lib;E:\Program Files\OpenCV3.4.8\opencv\build\x64\vc15\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Users\Lenovo\Desktop\ElectronBot_Win\lib;C:\Users\Lenovo\Desktop\ElectronBot_Win\src;E:\Program Files\OpenCV3.4.8\opencv\build\include;E:\Program Files\OpenCV3.4.8\opencv\build\include\opencv;E:\Program Files\OpenCV3.4.8\opencv\build\include\opencv2;E:\Program Files\dlib-19.24\install\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\Lenovo\Desktop\ElectronBot_Win\lib;C:\Users\Lenovo\Desktop\ElectronBot_Win\src\lib;E:\Program Files\OpenCV3.4.8\opencv\build\x64\vc15\lib;E:\Program Files\dlib-19.24\install\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -133,23 +133,27 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>USBInterface.lib;ElectronBotSDK-LowLevel.lib;opencv_world348.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>USBInterface.lib;ElectronBotSDK-LowLevel.lib;opencv_world348.lib;dlib19.24.0_release_64bit_msvc1932.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="AudioClip.h" />
+    <ClInclude Include="CaptureDlib.h" />
     <ClInclude Include="electron_controller.h" />
     <ClInclude Include="lib\USBInterface.h" />
     <ClInclude Include="src\electron_low_level.h" />
     <ClInclude Include="src\electron_player.h" />
     <ClInclude Include="TCPServer.h" />
+    <ClInclude Include="MouseHandler.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AudioClip.cpp" />
+    <ClCompile Include="CaptureDlib.cpp" />
     <ClCompile Include="electron_controller.cpp" />
+    <ClCompile Include="MouseHandler.cpp" />
     <ClCompile Include="src\electron_low_level.cpp" />
     <ClCompile Include="src\electron_player.cpp" />
-    <ClCompile Include="src\sample.cpp" />
+    <ClCompile Include="src\main.cpp" />
     <ClCompile Include="TCPServer.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

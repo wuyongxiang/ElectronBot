@@ -1,10 +1,40 @@
-﻿  sample.cpp
+﻿  MouseHandler.cpp
+C:\Users\Lenovo\Desktop\ElectronBot_Win\lib\electron_low_level.h(40,17): warning C4251: “ElectronLowLevel::syncTaskHandle”: class“std::thread”需要有 dll 接口由 class“ElectronLowLevel”的客户端使用
+D:\VisualStudio\IDE\VC\Tools\MSVC\14.32.31326\include\thread(37): message : 参见“std::thread”的声明
+C:\Users\Lenovo\Desktop\ElectronBot_Win\src\electron_player.h(55,25): warning C4251: “ElectronPlayer::poseTasks”: class“std::vector<ElectronPlayer::RobotPose_t,std::allocator<ElectronPlayer::RobotPose_t>>”需要有 dll 接口由 class“ElectronPlayer”的客户端使用
+C:\Users\Lenovo\Desktop\ElectronBot_Win\src\electron_player.h(49): message : 参见“std::vector<ElectronPlayer::RobotPose_t,std::allocator<ElectronPlayer::RobotPose_t>>”的声明
+C:\Users\Lenovo\Desktop\ElectronBot_Win\src\electron_player.h(57,15): warning C4251: “ElectronPlayer::bulabula”: class“AudioClip”需要有 dll 接口由 class“ElectronPlayer”的客户端使用
+C:\Users\Lenovo\Desktop\ElectronBot_Win\AudioClip.h(18): message : 参见“AudioClip”的声明
+C:\Users\Lenovo\Desktop\ElectronBot_Win\electron_controller.h(35,38): warning C4251: “ElectronController::robotTasks”: class“std::queue<ElectronPlayer::RobotTask,std::deque<ElectronPlayer::RobotTask,std::allocator<ElectronPlayer::RobotTask>>>”需要有 dll 接口由 class“ElectronController”的客户端使用
+C:\Users\Lenovo\Desktop\ElectronBot_Win\electron_controller.h(35): message : 参见“std::queue<ElectronPlayer::RobotTask,std::deque<ElectronPlayer::RobotTask,std::allocator<ElectronPlayer::RobotTask>>>”的声明
+  TCPServer.cpp
+C:\Users\Lenovo\Desktop\ElectronBot_Win\lib\electron_low_level.h(40,17): warning C4251: “ElectronLowLevel::syncTaskHandle”: class“std::thread”需要有 dll 接口由 class“ElectronLowLevel”的客户端使用
+D:\VisualStudio\IDE\VC\Tools\MSVC\14.32.31326\include\thread(37): message : 参见“std::thread”的声明
+C:\Users\Lenovo\Desktop\ElectronBot_Win\src\electron_player.h(55,25): warning C4251: “ElectronPlayer::poseTasks”: class“std::vector<ElectronPlayer::RobotPose_t,std::allocator<ElectronPlayer::RobotPose_t>>”需要有 dll 接口由 class“ElectronPlayer”的客户端使用
+C:\Users\Lenovo\Desktop\ElectronBot_Win\src\electron_player.h(49): message : 参见“std::vector<ElectronPlayer::RobotPose_t,std::allocator<ElectronPlayer::RobotPose_t>>”的声明
+C:\Users\Lenovo\Desktop\ElectronBot_Win\src\electron_player.h(57,15): warning C4251: “ElectronPlayer::bulabula”: class“AudioClip”需要有 dll 接口由 class“ElectronPlayer”的客户端使用
+C:\Users\Lenovo\Desktop\ElectronBot_Win\AudioClip.h(18): message : 参见“AudioClip”的声明
+C:\Users\Lenovo\Desktop\ElectronBot_Win\electron_controller.h(35,38): warning C4251: “ElectronController::robotTasks”: class“std::queue<ElectronPlayer::RobotTask,std::deque<ElectronPlayer::RobotTask,std::allocator<ElectronPlayer::RobotTask>>>”需要有 dll 接口由 class“ElectronController”的客户端使用
+C:\Users\Lenovo\Desktop\ElectronBot_Win\electron_controller.h(35): message : 参见“std::queue<ElectronPlayer::RobotTask,std::deque<ElectronPlayer::RobotTask,std::allocator<ElectronPlayer::RobotTask>>>”的声明
+  electron_controller.cpp
+C:\Users\Lenovo\Desktop\ElectronBot_Win\lib\electron_low_level.h(40,17): warning C4251: “ElectronLowLevel::syncTaskHandle”: class“std::thread”需要有 dll 接口由 class“ElectronLowLevel”的客户端使用
+D:\VisualStudio\IDE\VC\Tools\MSVC\14.32.31326\include\thread(37): message : 参见“std::thread”的声明
+C:\Users\Lenovo\Desktop\ElectronBot_Win\src\electron_player.h(55,25): warning C4251: “ElectronPlayer::poseTasks”: class“std::vector<ElectronPlayer::RobotPose_t,std::allocator<ElectronPlayer::RobotPose_t>>”需要有 dll 接口由 class“ElectronPlayer”的客户端使用
+C:\Users\Lenovo\Desktop\ElectronBot_Win\src\electron_player.h(49): message : 参见“std::vector<ElectronPlayer::RobotPose_t,std::allocator<ElectronPlayer::RobotPose_t>>”的声明
+C:\Users\Lenovo\Desktop\ElectronBot_Win\src\electron_player.h(57,15): warning C4251: “ElectronPlayer::bulabula”: class“AudioClip”需要有 dll 接口由 class“ElectronPlayer”的客户端使用
+C:\Users\Lenovo\Desktop\ElectronBot_Win\AudioClip.h(18): message : 参见“AudioClip”的声明
+C:\Users\Lenovo\Desktop\ElectronBot_Win\electron_controller.h(35,38): warning C4251: “ElectronController::robotTasks”: class“std::queue<ElectronPlayer::RobotTask,std::deque<ElectronPlayer::RobotTask,std::allocator<ElectronPlayer::RobotTask>>>”需要有 dll 接口由 class“ElectronController”的客户端使用
+C:\Users\Lenovo\Desktop\ElectronBot_Win\electron_controller.h(35): message : 参见“std::queue<ElectronPlayer::RobotTask,std::deque<ElectronPlayer::RobotTask,std::allocator<ElectronPlayer::RobotTask>>>”的声明
+  main.cpp
 C:\Users\Lenovo\Desktop\ElectronBot_Win\src\electron_low_level.h(43,17): warning C4251: “ElectronLowLevel::syncTaskHandle”: class“std::thread”需要有 dll 接口由 class“ElectronLowLevel”的客户端使用
 D:\VisualStudio\IDE\VC\Tools\MSVC\14.32.31326\include\thread(37): message : 参见“std::thread”的声明
 C:\Users\Lenovo\Desktop\ElectronBot_Win\src\electron_player.h(55,25): warning C4251: “ElectronPlayer::poseTasks”: class“std::vector<ElectronPlayer::RobotPose_t,std::allocator<ElectronPlayer::RobotPose_t>>”需要有 dll 接口由 class“ElectronPlayer”的客户端使用
 C:\Users\Lenovo\Desktop\ElectronBot_Win\src\electron_player.h(49): message : 参见“std::vector<ElectronPlayer::RobotPose_t,std::allocator<ElectronPlayer::RobotPose_t>>”的声明
 C:\Users\Lenovo\Desktop\ElectronBot_Win\src\electron_player.h(57,15): warning C4251: “ElectronPlayer::bulabula”: class“AudioClip”需要有 dll 接口由 class“ElectronPlayer”的客户端使用
 C:\Users\Lenovo\Desktop\ElectronBot_Win\AudioClip.h(18): message : 参见“AudioClip”的声明
-C:\Users\Lenovo\Desktop\ElectronBot_Win\electron_controller.h(30,38): warning C4251: “ElectronController::robotTasks”: class“std::queue<ElectronPlayer::RobotTask,std::deque<ElectronPlayer::RobotTask,std::allocator<ElectronPlayer::RobotTask>>>”需要有 dll 接口由 class“ElectronController”的客户端使用
-C:\Users\Lenovo\Desktop\ElectronBot_Win\electron_controller.h(30): message : 参见“std::queue<ElectronPlayer::RobotTask,std::deque<ElectronPlayer::RobotTask,std::allocator<ElectronPlayer::RobotTask>>>”的声明
+C:\Users\Lenovo\Desktop\ElectronBot_Win\electron_controller.h(35,38): warning C4251: “ElectronController::robotTasks”: class“std::queue<ElectronPlayer::RobotTask,std::deque<ElectronPlayer::RobotTask,std::allocator<ElectronPlayer::RobotTask>>>”需要有 dll 接口由 class“ElectronController”的客户端使用
+C:\Users\Lenovo\Desktop\ElectronBot_Win\electron_controller.h(35): message : 参见“std::queue<ElectronPlayer::RobotTask,std::deque<ElectronPlayer::RobotTask,std::allocator<ElectronPlayer::RobotTask>>>”的声明
+  正在生成代码...
+C:\Users\Lenovo\Desktop\ElectronBot_Win\electron_controller.cpp(71): warning C4717: “ElectronController::RunTask”: 如递归所有控件路径，函数将导致运行时堆栈溢出
+    正在创建库 C:\Users\Lenovo\Desktop\ElectronBot_Win\x64\Debug\ElectronBot_Win.lib 和对象 C:\Users\Lenovo\Desktop\ElectronBot_Win\x64\Debug\ElectronBot_Win.exp
   ElectronBot_Win.vcxproj -> C:\Users\Lenovo\Desktop\ElectronBot_Win\x64\Debug\ElectronBot_Win.exe

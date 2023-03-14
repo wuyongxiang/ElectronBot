@@ -1,16 +1,29 @@
-﻿  sample.cpp
-C:\Users\Lenovo\Desktop\ElectronBot_Win\src\electron_low_level.h(43,17): warning C4251: “ElectronLowLevel::syncTaskHandle”: class“std::thread”需要有 dll 接口由 class“ElectronLowLevel”的客户端使用
+﻿  CaptureDlib.cpp
+C:\Users\Lenovo\Desktop\ElectronBot_Win\lib\electron_low_level.h(40,17): warning C4251: “ElectronLowLevel::syncTaskHandle”: class“std::thread”需要有 dll 接口由 class“ElectronLowLevel”的客户端使用
 D:\VisualStudio\IDE\VC\Tools\MSVC\14.32.31326\include\thread(37): message : 参见“std::thread”的声明
 C:\Users\Lenovo\Desktop\ElectronBot_Win\src\electron_player.h(55,25): warning C4251: “ElectronPlayer::poseTasks”: class“std::vector<ElectronPlayer::RobotPose_t,std::allocator<ElectronPlayer::RobotPose_t>>”需要有 dll 接口由 class“ElectronPlayer”的客户端使用
 C:\Users\Lenovo\Desktop\ElectronBot_Win\src\electron_player.h(49): message : 参见“std::vector<ElectronPlayer::RobotPose_t,std::allocator<ElectronPlayer::RobotPose_t>>”的声明
 C:\Users\Lenovo\Desktop\ElectronBot_Win\src\electron_player.h(57,15): warning C4251: “ElectronPlayer::bulabula”: class“AudioClip”需要有 dll 接口由 class“ElectronPlayer”的客户端使用
 C:\Users\Lenovo\Desktop\ElectronBot_Win\AudioClip.h(18): message : 参见“AudioClip”的声明
-C:\Users\Lenovo\Desktop\ElectronBot_Win\electron_controller.h(30,38): warning C4251: “ElectronController::robotTasks”: class“std::queue<ElectronPlayer::RobotTask,std::deque<ElectronPlayer::RobotTask,std::allocator<ElectronPlayer::RobotTask>>>”需要有 dll 接口由 class“ElectronController”的客户端使用
-C:\Users\Lenovo\Desktop\ElectronBot_Win\electron_controller.h(30): message : 参见“std::queue<ElectronPlayer::RobotTask,std::deque<ElectronPlayer::RobotTask,std::allocator<ElectronPlayer::RobotTask>>>”的声明
+C:\Users\Lenovo\Desktop\ElectronBot_Win\electron_controller.h(35,38): warning C4251: “ElectronController::robotTasks”: class“std::queue<ElectronPlayer::RobotTask,std::deque<ElectronPlayer::RobotTask,std::allocator<ElectronPlayer::RobotTask>>>”需要有 dll 接口由 class“ElectronController”的客户端使用
+C:\Users\Lenovo\Desktop\ElectronBot_Win\electron_controller.h(35): message : 参见“std::queue<ElectronPlayer::RobotTask,std::deque<ElectronPlayer::RobotTask,std::allocator<ElectronPlayer::RobotTask>>>”的声明
+C:\Users\Lenovo\Desktop\ElectronBot_Win\CaptureDlib.h(32,9): warning C4251: “CaptureDlib::Eye_Waveform”: class“cv::Mat”需要有 dll 接口由 class“CaptureDlib”的客户端使用
+E:\Program Files\OpenCV3.4.8\opencv\build\include\opencv2\core\mat.hpp(804): message : 参见“cv::Mat”的声明
+C:\Users\Lenovo\Desktop\ElectronBot_Win\CaptureDlib.h(33,11): warning C4251: “CaptureDlib::p1”: class“cv::Point_<int>”需要有 dll 接口由 class“CaptureDlib”的客户端使用
+E:\Program Files\OpenCV3.4.8\opencv\build\include\opencv2\core\types.hpp(188): message : 参见“cv::Point_<int>”的声明
+C:\Users\Lenovo\Desktop\ElectronBot_Win\CaptureDlib.h(34,11): warning C4251: “CaptureDlib::p2”: class“cv::Point_<int>”需要有 dll 接口由 class“CaptureDlib”的客户端使用
+E:\Program Files\OpenCV3.4.8\opencv\build\include\opencv2\core\types.hpp(188): message : 参见“cv::Point_<int>”的声明
+C:\Users\Lenovo\Desktop\ElectronBot_Win\CaptureDlib.h(35,11): warning C4251: “CaptureDlib::p3”: class“cv::Point_<int>”需要有 dll 接口由 class“CaptureDlib”的客户端使用
+E:\Program Files\OpenCV3.4.8\opencv\build\include\opencv2\core\types.hpp(188): message : 参见“cv::Point_<int>”的声明
+C:\Users\Lenovo\Desktop\ElectronBot_Win\CaptureDlib.h(36,11): warning C4251: “CaptureDlib::p4”: class“cv::Point_<int>”需要有 dll 接口由 class“CaptureDlib”的客户端使用
+E:\Program Files\OpenCV3.4.8\opencv\build\include\opencv2\core\types.hpp(188): message : 参见“cv::Point_<int>”的声明
+C:\Users\Lenovo\Desktop\ElectronBot_Win\CaptureDlib.h(37,12): warning C4251: “CaptureDlib::line_color”: class“cv::Scalar_<double>”需要有 dll 接口由 class“CaptureDlib”的客户端使用
+E:\Program Files\OpenCV3.4.8\opencv\build\include\opencv2\core\types.hpp(657): message : 参见“cv::Scalar_<double>”的声明
     正在创建库 C:\Users\Lenovo\Desktop\ElectronBot_Win\x64\Release\ElectronBot_Win.lib 和对象 C:\Users\Lenovo\Desktop\ElectronBot_Win\x64\Release\ElectronBot_Win.exp
   正在生成代码
-  2 of 663 functions ( 0.3%) were compiled, the rest were copied from previous compilation.
+C:\Users\Lenovo\Desktop\ElectronBot_Win\CaptureDlib.cpp(301): warning C4715: “CaptureDlib::Init_CaptureDlib”: 不是所有的控件路径都返回值
+  8 of 4220 functions ( 0.2%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    0 functions had inline decision re-evaluated but remain unchanged
+    21 functions had inline decision re-evaluated but remain unchanged
   已完成代码的生成
   ElectronBot_Win.vcxproj -> C:\Users\Lenovo\Desktop\ElectronBot_Win\x64\Release\ElectronBot_Win.exe
